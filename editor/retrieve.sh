@@ -7,7 +7,7 @@ while getopts ":p:u:h:" opt; do
 	case "$opt" in
 		p)
 			PORT="$OPTARG" 
-			if [ $PORT == "-h" ] || [ $PORT == '-u' ]; then
+			if [ "$PORT" == "-h" ] || [ "$PORT" == '-u' ]; then
 				PORT=22
 			fi
 			;;
