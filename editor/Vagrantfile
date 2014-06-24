@@ -1,0 +1,6 @@
+Vagrant.configure("2") do |config|
+	config.vm.box = "precise64"
+	config.vm.synced_folder "~", "/home/vagrant/sharedhome"
+	config.vm.provision :shell, :inline => "sudo apt-get -y update && sudo apt-get -y install vim git"
+end
+
