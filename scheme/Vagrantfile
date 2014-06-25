@@ -1,5 +1,5 @@
-config.vm.synced_folder "../.shared/code", "/home/vagrant/code"
-config.vm.synced_folder "../.shared/files", "/home/vagrant/files"
+system('mkdir -p ../.shared/code')
+system('mkdir -p ../.shared/files')
 Vagrant.configure("2") do |config|
 	config.vm.box = "precise64"
 	config.vm.synced_folder "~", "/home/vagrant/sharedhome"
