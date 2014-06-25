@@ -19,7 +19,7 @@ fi
 [ ! -t 0 ] && cp /vagrant/retrieve.sh /home/vagrant/
 if [ "$USER" != "-p" ] && [ "$USER" != '-u' ] && [ "$USER" != '-h' ] && [ "$REMOTEHOST" != "-p" ] && [ "$REMOTEHOST" != '-u' ] && [ "$REMOTEHOST" != '-h' ]; then
 	if [ "$(id -u)" != "0" ]; then
-		git clone ssh://$USER@$REMOTEHOST:$PORT/~/repo/dotfiles.git && (rm ~/.bashrc && find dotfiles/ -mindepth 1 -maxdepth 1 ! -name '.git' -exec ln -s {} ~ ';')
+		git clone ssh://$USER@$REMOTEHOST:$PORT/~/repo/dotfiles.git && (rm ~/.bashrc && find dotfiles/ -mindepth 1 -maxdepth 1 ! -name '.git' -exec ln -s {} ~ ';' ; . ~/.repostrap.sh)
 	else
 		#make the ssh agent forward available for root during provisioning
 		SSH_FIX_FILE="/etc/sudoers.d/root_ssh_agent"
@@ -28,7 +28,7 @@ if [ "$USER" != "-p" ] && [ "$USER" != '-u' ] && [ "$USER" != '-h' ] && [ "$REMO
 			chmod 0440 $SSH_FIX_FILE
 		fi
 		su vagrant -c "ssh-keyscan -p $PORT $REMOTEHOST >> ~/.ssh/known_hosts"
-		su vagrant -c "git clone ssh://$USER@$REMOTEHOST:$PORT/~/repo/dotfiles.git && (rm ~/.bashrc && find dotfiles/ -mindepth 1 -maxdepth 1 ! -name '.git' -exec ln -s {} ~ ';') || echo 'host system ssh agent not accepted, try manually running ./retrieve.sh'"
+		su vagrant -c "git clone ssh://$USER@$REMOTEHOST:$PORT/~/repo/dotfiles.git && (rm ~/.bashrc && find dotfiles/ -mindepth 1 -maxdepth 1 ! -name '.git' -exec ln -s {} ~ ';' ; . ~/.repostrap.sh) || echo 'host system ssh agent not accepted, try manually running ./retrieve.sh'"
 	fi
 else 
 	[ ! -t 0 ] && echo 'no remote host specified, manually run the retrieve.sh script from within the vm'
