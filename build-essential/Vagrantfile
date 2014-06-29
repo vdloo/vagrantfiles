@@ -2,9 +2,10 @@ system('mkdir -p ../.shared/code')
 system('mkdir -p ../.shared/files')
 Vagrant.configure("2") do |config|
 	config.vm.box = "precise64"
+	config.vm.hostname = "build-essential"
 	config.vm.synced_folder "~", "/home/vagrant/sharedhome"
         config.vm.synced_folder "../.shared/code", "/home/vagrant/code"
         config.vm.synced_folder "../.shared/files", "/home/vagrant/files"
-	config.vm.provision :shell, :inline => "sudo apt-get -y update && sudo apt-get -y install build-essential autoconf automake clang llvm manpages-dev"
+	config.vm.provision :shell, :inline => "sudo apt-get -y update && sudo apt-get -y install build-essential autoconf automake clang llvm manpages-dev gdb gdb-doc"
 end
 
