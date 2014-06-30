@@ -1,0 +1,12 @@
+system('mkdir -p ../.shared/code')
+system('mkdir -p ../.shared/files')
+Vagrant.configure("2") do |config|
+	config.vm.box = "precise32"
+	config.vm.box_url = 'http://files.vagrantup.com/precise32.box'
+	config.vm.hostname = "build-essential32"
+	config.vm.synced_folder "~", "/home/vagrant/sharedhome"
+        config.vm.synced_folder "../.shared/code", "/home/vagrant/code"
+        config.vm.synced_folder "../.shared/files", "/home/vagrant/files"
+	config.vm.provision :shell, :inline => "sudo apt-get -y update && sudo apt-get -y install build-essential autoconf automake clang llvm manpages-dev gdb gdb-doc"
+end
+
