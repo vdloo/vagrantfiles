@@ -2,13 +2,15 @@ system('mkdir -p ../.shared/code')
 system('mkdir -p ../.shared/files')
 Vagrant.configure("2") do |config|
 	config.vm.box = "precise64"
-	config.vm.hostname = "1.9.3ruby64"
+	config.vm.hostname = "jekyll64"
 	config.vm.box_url = 'http://files.vagrantup.com/precise64.box'
 	config.vm.network "forwarded_port", guest: 4000, host: 4000
 	config.vm.synced_folder "~", "/home/vagrant/sharedhome"
         config.vm.synced_folder "../.shared/code", "/home/vagrant/code"
         config.vm.synced_folder "../.shared/files", "/home/vagrant/files"
-	config.vm.provision :shell, :inline => "sudo apt-get -y update && sudo apt-get -y install curl && wget https://get.rvm.io -O rvm.sh && sudo chmod u+x rvm.sh && sudo bash rvm.sh && source /etc/profile.d/rvm.sh && /usr/local/rvm/bin/rvm install 1.9.3 ; sudo apt-get -y install rubygems"
-
+	config.vm.provision :shell, :inline => "sudo apt-get -y update && sudo apt-get -y install curl nodejs"
+	config.vm.provision :shell, :path => "install-rvm.sh",  :args => "stable"
+	config.vm.provision :shell, :path => "install-ruby.sh", :args => "1.9.3 redcarpet jekyll --no-rdoc --no-ri"
+	config.vm.provision :shell, :inline => "echo 'rvm use 1.9.3' >> /home/vagrant/.bashrc"
 end
 
