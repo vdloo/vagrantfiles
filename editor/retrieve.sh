@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #example ./retrieve.sh -p 1234 -u vdloo -h example.com
 
 unset USER
@@ -23,7 +23,7 @@ if [ "$USER" != "-p" ] && [ "$USER" != '-u' ] && [ "$USER" != '-h' ] && [ "$REMO
 		git clone ssh://$USER@$REMOTEHOST:$PORT/~/repo/dotfiles.git && (
 			rm ~/.bashrc && find dotfiles/ -mindepth 1 -maxdepth 1 ! -name '.git' -exec ln -s {} ~ ';'
 			. ~/.repostrap.sh
-			. ~/.bashrc
+			source ~/.bashrc
 		)
 	else
 		#make the ssh agent forward available for root during provisioning
