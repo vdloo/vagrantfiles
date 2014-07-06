@@ -5,6 +5,6 @@ Vagrant.configure("2") do |config|
 	config.vm.synced_folder "~", "/home/vagrant/sharedhome"
         config.vm.synced_folder "../.shared/code", "/home/vagrant/code"
         config.vm.synced_folder "../.shared/files", "/home/vagrant/files"
-	config.vm.provision :shell, :inline => "sudo apt-get -y update && sudo apt-get -y install build-essential autoconf automake clang llvm manpages-dev gdb gdb-doc"
+	config.vm.provision :shell, :inline => "sudo apt-get -y update && sudo apt-get -y install build-essential autoconf libtool automake clang llvm manpages-dev gdb gdb-doc"
 end
 
