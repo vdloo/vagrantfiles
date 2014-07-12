@@ -1,10 +1,11 @@
 Vagrant.configure("2") do |config|
 	config.vm.box = "precise64"
 	config.vm.hostname = "build-essential64"
+	config.vm.network "private_network", type: "dhcp"
 	config.vm.box_url = 'http://files.vagrantup.com/precise64.box'
 	config.vm.synced_folder "~", "/home/vagrant/sharedhome"
         config.vm.synced_folder "../.shared/code", "/home/vagrant/code"
         config.vm.synced_folder "../.shared/files", "/home/vagrant/files"
-	config.vm.provision :shell, :inline => "sudo apt-get -y update && sudo apt-get -y install build-essential autoconf libtool automake clang llvm manpages-dev gdb gdb-doc"
+	config.vm.provision :shell, :inline => "sudo apt-get -y update && sudo apt-get -y install build-essential autoconf libtool automake clang llvm manpages-dev gdb gdb-doc htop"
 end
 
