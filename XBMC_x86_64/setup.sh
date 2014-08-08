@@ -4,7 +4,7 @@ sudo apt-get -y build-dep xbmc
 git clone git://github.com/xbmc/xbmc.git
 make -C xbmc/lib/taglib
 sudo make -C xbmc/lib/taglib install
-./xbmc/bootstrap
-./xbmc/configure
+(cd xbmc; ./bootstrap)
+(cd xbmc; ./configure)
 make xbmc -j 4
 sudo make xbmc install
