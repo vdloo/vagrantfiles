@@ -8,3 +8,5 @@ sudo make -C xbmc/lib/taglib install
 
 #autologin as user vagrant in gui
 sed -i '$ d' /etc/init/tty1.conf; echo "exec /bin/login -f vagrant < /dev/tty1 > /dev/tty1 2>&1" >> /etc/init/tty1.conf
+echo "xinit /usr/local/bin/xbmc --standalone --no-test" >> /home/vagrant/.bashrc
+reboot
