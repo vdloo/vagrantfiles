@@ -14,6 +14,6 @@ Vagrant.configure("2") do |config|
 		s.path 	= "retrieve.sh"
 		s.args 	= "-u #{ENV['USER']} -h #{ENV['REMOTEHOST']} -p #{ENV['PORT']}"
 	end
-	config.vm.provision "shell", :inline -> "rm postinstall.sh"
+	config.vm.provision "shell", inline: "rm postinstall.sh"
 end
 
