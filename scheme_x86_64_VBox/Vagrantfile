@@ -1,11 +1,12 @@
 Vagrant.configure("2") do |config|
-	config.vm.box = "buildessential_x86_64"
-	config.vm.hostname = "buildessential64"
+	config.vm.box = "scheme_x86_64"
+	config.vm.hostname = "scheme64"
 	config.vm.box_url = 'https://vagrantcloud.com/ubuntu/trusty64/version/1/provider/virtualbox.box'
-	config.vm.synced_folder "../../.shared/code", "/home/vagrant/code"
-	config.vm.synced_folder "../../.shared/files", "/home/vagrant/files"
+	config.vm.synced_folder "../.shared/code", "/home/vagrant/code"
+	config.vm.synced_folder "../.shared/files", "/home/vagrant/files"
 	config.vm.provision "shell" do |s|
 		s.path 	= "https://raw.githubusercontent.com/vdloo/dotfiles/master/bootstrap.sh"
 		s.args 	= "-u #{ENV['USER']} -s #{ENV['REMOTEHOST']} -p #{ENV['PORT']} -n vagrant"
 	end
 end
+
