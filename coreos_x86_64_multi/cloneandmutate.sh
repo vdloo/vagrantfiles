@@ -15,4 +15,3 @@ BOXURL=$(curl -s $JSONURL | grep url | cut -d'"' -f4)
 	&& wget http://alpha.release.core-os.net/amd64-usr/410.0.0/coreos_production_vagrant.box
 vagrant mutate coreos*.box kvm
 sed -i 's/# plugin conflict/config.vm.provider :kvm do |vb, override|\n\toverride.vm.box = "coreos_production_vagrant"\n\toverride.vm.box_version = "0"\n\tconfig.ssh.username="core"\n  end\n\n# plugin conflict/g' Vagrantfile
-
