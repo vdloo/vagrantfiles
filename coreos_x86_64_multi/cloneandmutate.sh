@@ -2,7 +2,7 @@
 # The official coreos-vagrant repo vagrantfile doesn't have support for vagrant-kvm.
 # This script clones that repo and converts the VirtualBox image with vagrant-mutate
 # to create a kvm box. Then using sed a section is added to the Vagrantfile so a
-# a kvm instance of CoreOS can be started with the command 'vagrant --provider=kvm up'
+# kvm instance of CoreOS can be started with the command 'vagrant --provider=kvm up'
 [ ! -d coreos-vagrant ] \
 	&& git clone https://github.com/coreos/coreos-vagrant \
 	|| (cd coreos-vagrant; git pull)
