@@ -1,7 +1,7 @@
 Vagrant.configure("2") do |config|
-	config.vm.box = "trusty_x86_64"
-	config.vm.hostname = "wordpressLAMP64"
-	config.vm.box_url = 'https://vagrantcloud.com/ubuntu/trusty64/version/1/provider/virtualbox.box'
+        config.vm.box = "trusty64"
+        config.vm.box_url = 'https://vagrant-kvm-boxes-si.s3.amazonaws.com/trusty64-kvm-20140418.box'
+        config.vm.base_mac = "9cc09c2c30c1"
 	config.vm.synced_folder "../.shared/code", "/home/vagrant/code"
 	config.vm.synced_folder "../.shared/files", "/home/vagrant/files"
 	config.ssh.forward_agent = true
@@ -10,4 +10,3 @@ Vagrant.configure("2") do |config|
 		s.args 	= "-u #{ENV['USER']} -s #{ENV['REMOTEHOST']} -p #{ENV['PORT']} -n vagrant"
 	end
 end
-
