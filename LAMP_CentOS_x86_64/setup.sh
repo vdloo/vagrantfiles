@@ -6,3 +6,4 @@ type -p yum \
 		chkconfig mysqld on ;\
 		apachectl start ;\
 	)
+iptables -I INPUT -j ACCEPT
