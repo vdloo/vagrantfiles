@@ -1,0 +1,12 @@
+Vagrant.configure("2") do |config|
+	config.vm.box = "jessie_x86_64"
+	config.vm.box_url = 'https://downloads.sourceforge.net/project/vagrantboxjessie/debian80.box'
+	config.vm.synced_folder "../.shared/code", "/home/vagrant/code"
+	config.vm.synced_folder "../.shared/files", "/home/vagrant/files"
+	config.ssh.forward_agent = true
+	config.vm.provision "shell" do |s|
+		s.path 	= "https://raw.githubusercontent.com/vdloo/dotfiles/master/bootstrap.sh"
+		s.args 	= "-u #{ENV['USER']} -s #{ENV['REMOTEHOST']} -p #{ENV['PORT']} -n vagrant"
+	end
+end
+
