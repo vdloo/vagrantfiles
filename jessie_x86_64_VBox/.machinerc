@@ -1,0 +1,4 @@
+# Specify what type of tasks this machine will have. Options each on a new line.
+# options: core (implicit), desktop, htpc, audiomirror, videomirror
+core
+desktop
