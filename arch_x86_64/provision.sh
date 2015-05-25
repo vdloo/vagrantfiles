@@ -11,4 +11,4 @@ git clone https://github.com/vdloo/puppetfiles /usr/etc/puppetfiles
 # install :( see: https://github.com/gmarik/Vundle.vim/issues/511
 su vdloo -c vim +PluginInstall +qall && printf "\033c"
 
-echo 'sudo su vdloo' > /home/vagrant/.bashrc
+echo "sudo su vdloo -c 'cd $HOME; bash" > /home/vagrant/.bashrc
