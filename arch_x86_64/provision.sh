@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-apt-get install git puppet -y
+pacman -Syyu --noconfirm && pacman -S git puppet --noconfirm
 puppet module install puppetlabs-vcsrepo
 puppet module install maestrodev-wget
 
