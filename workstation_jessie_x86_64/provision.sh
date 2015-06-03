@@ -2,6 +2,7 @@
 apt-get install git puppet -y
 puppet module install puppetlabs-vcsrepo
 puppet module install maestrodev-wget
+puppet module install saz-sudo
 
 mkdir -p code/configs -m 755
 git clone https://github.com/vdloo/puppetfiles /usr/etc/puppetfiles
