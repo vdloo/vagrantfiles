@@ -1,19 +1,28 @@
+begin
+	raise RuntimeError, 'Could not use pre-provisioned image. Need to run base image playbook as well.'
+rescue RuntimeError => e
+	puts  e.message
+	load '../headless/Vagrantfile'
+end
+
 Vagrant.configure('2') do |config|
-	config.vm.box = 'ubuntu_x86_64'
+	case ENV['OSTYPE']
+	when 'cygwin'
+		AUDIO_DRIVER = 'dsound'
+	when '/^darwin/'
+		AUDIO_DRIVER = 'coreaudio'
+	else
+		AUDIO_DRIVER = 'alsa'
+	end
         config.vm.provider "virtualbox" do |v|
                 v.customize ['modifyvm', :id, '--memory', '2048']
                 v.customize ['modifyvm', :id, '--cpus', '2']
                 v.customize ['modifyvm', :id, '--vram', '256']
                 v.customize ['modifyvm', :id, '--accelerate2dvideo', 'off']
-                # coreaudio for mac. alsa for linux. dsound for windows hosts
-                v.customize ['modifyvm', :id, '--audio', 'dsound']
+                v.customize ['modifyvm', :id, '--audio', AUDIO_DRIVER]
                 v.customize ['modifyvm', :id, '--audiocontroller', 'ac97']
                 v.gui = true
         end
-	config.vm.box_url = 'https://github.com/kraksoft/vagrant-box-ubuntu/releases/download/14.10/ubuntu-14.10-amd64.box'
-	config.vm.synced_folder ".", "/vagrant", disabled: true
-
-	config.ssh.forward_agent = true
 	config.vm.provision "shell" do |s|
 		s.path 	= "provision.sh"
 	end
