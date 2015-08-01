@@ -1,4 +1,2 @@
 **/*.swp
 .vagrant
-coreos_x86_64_multi/*
-!coreos_x86_64_multi/cloneandmutate.sh

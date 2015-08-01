@@ -13,4 +13,7 @@ git clone https://github.com/vdloo/puppetfiles /usr/etc/puppetfiles
 # install :( see: https://github.com/gmarik/Vundle.vim/issues/511
 #su vdloo -c vim +PluginInstall +qall; printf "\033c"
 
-echo "sudo su vdloo -c 'cd /home/vdloo; bash'" > /home/vagrant/.bashrc
+sudo apt-get install acl -y
+echo "setfacl -m vdloo:x \$(dirname \"\$SSH_AUTH_SOCK\")" >> /home/vagrant/.bashrc
+echo "setfacl -m vdloo:rwx \"\$SSH_AUTH_SOCK\"" >> /home/vagrant/.bashrc
+echo "sudo su vdloo -l -c \"export SSH_AUTH_SOCK=\$SSH_AUTH_SOCK; bash\"" >> /home/vagrant/.bashrc
