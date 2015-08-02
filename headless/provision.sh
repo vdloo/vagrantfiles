@@ -4,6 +4,7 @@ puppet module install maestrodev-wget
 puppet module install saz-sudo
 
 mkdir -p code/configs -m 755
+git clone git@github.com:vdloo/hieradata.git /usr/etc/hieradata
 git clone https://github.com/vdloo/puppetfiles /usr/etc/puppetfiles
 (cd /usr/etc/puppetfiles; bash papply.sh manifests/headless.pp --verbose)
 
