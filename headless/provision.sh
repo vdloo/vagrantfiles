@@ -2,7 +2,7 @@
 puppet module install puppetlabs-vcsrepo
 puppet module install maestrodev-wget
 puppet module install saz-sudo
-puppet module install KyleAndersom-consul
+puppet module install KyleAnderson-consul
 
 mkdir -p code/configs -m 755
 git clone git@github.com:vdloo/hieradata.git /usr/etc/hieradata
