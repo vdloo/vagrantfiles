@@ -3,23 +3,11 @@ Vagrant.configure('2') do |config|
         config.ssh.forward_agent = true
 	HEADLESS_SCRIPT_DIR = File.dirname(__FILE__) << '/'
 
-	case ENV['VAGRANT_DISTRO']
-	when 'archlinux'
-		config.vm.box = 'archlinux_x86_64'
-		config.vm.box_url = 'http://cloud.terry.im/vagrant/archlinux-x86_64.box'
-		DEPENDENCIES = 'deps/archlinux_deps.sh'
-	when 'debian'
-		config.vm.box = 'debian/jessie64'
-		DEPENDENCIES = 'deps/debian_deps.sh'
-	else
-		config.vm.box = 'ubuntu/trusty64'
-		DEPENDENCIES = 'deps/debian_deps.sh'
-	end
-
+	config.vm.box = 'archlinux_x86_64'
+	config.vm.box_url = 'http://cloud.terry.im/vagrant/archlinux-x86_64.box'
         config.vm.provision "shell" do |s|
-                s.path  = HEADLESS_SCRIPT_DIR + DEPENDENCIES
+                s.path  = HEADLESS_SCRIPT_DIR + 'deps/archlinux_deps.sh'
         end
-
         config.vm.provision "shell" do |s|
                 s.path  = HEADLESS_SCRIPT_DIR + 'provision.sh'
         end

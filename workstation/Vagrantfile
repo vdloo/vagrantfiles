@@ -24,11 +24,6 @@ Vagrant.configure('2') do |config|
                 v.gui = true
         end
 	WORKSTATION_SCRIPT_DIR = File.dirname(__FILE__) << '/'
-	unless ENV['VAGRANT_DISTRO'] == 'archlinux'
-		config.vm.provision "shell" do |s|
-			s.path 	= WORKSTATION_SCRIPT_DIR + 'deps/debian_deps.sh'
-		end
-	end
 	config.vm.provision "shell" do |s|
 		s.path 	= WORKSTATION_SCRIPT_DIR + 'provision.sh'
 	end
