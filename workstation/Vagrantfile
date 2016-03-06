@@ -1,5 +1,5 @@
 begin
-	raise RuntimeError, 'Could not use pre-provisioned image. Need to run base image playbook as well.'
+	raise RuntimeError, 'Could not use pre-provisioned headless image. Need to run base image playbook as well.'
 rescue RuntimeError => e
 	puts  e.message
 	load '../headless/Vagrantfile'
