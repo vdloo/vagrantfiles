@@ -5,6 +5,7 @@ NONROOT_USER=$(id -u vdloo > /dev/null 2>&1 && echo 'vdloo' || echo 'nonroot')
 mkdir -p "/vagrant/home/$NONROOT_USER"
 mkdir -p "/home/$NONROOT_USER"
 mount --bind "/vagrant/home/$NONROOT_USER" "/home/$NONROOT_USER"
+chown $NONROOT_USER:$NONROOT_USER "/home/$NONROOT_USER"
 
 puppet module install puppetlabs-vcsrepo
 puppet module install maestrodev-wget
