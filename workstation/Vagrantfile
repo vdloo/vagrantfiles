@@ -6,10 +6,11 @@ rescue RuntimeError => e
 end
 
 Vagrant.configure('2') do |config|
-	case ENV['OSTYPE']
-	when 'cygwin'
+	case RUBY_PLATFORM
+	when /mingw/
+	when /cygwin/
 		AUDIO_DRIVER = 'dsound'
-	when '/^darwin/'
+	when /darwin/
 		AUDIO_DRIVER = 'coreaudio'
 	else
 		AUDIO_DRIVER = 'alsa'
