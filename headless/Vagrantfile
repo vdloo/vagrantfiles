@@ -1,9 +1,19 @@
-Vagrant.configure('2') do |config|
-        config.ssh.forward_agent = true
-	HEADLESS_SCRIPT_DIR = File.dirname(__FILE__) << '/'
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
 
-	config.vm.box = 'archlinux_x86_64'
-	config.vm.box_url = 'http://cloud.terry.im/vagrant/archlinux-x86_64.box'
+# if vagrant-tun is not installed, install it and abort
+if !Vagrant.has_plugin?("vagrant-tun")
+  system("vagrant plugin install vagrant-tun")
+  abort "Installed the vagrant-tun plugin.\nFor the next configuration step, please again run: \"vagrant up\""
+end
+
+Vagrant.configure('2') do |config|
+        config.tun.enabled = true
+        config.ssh.forward_agent = true
+        HEADLESS_SCRIPT_DIR = File.dirname(__FILE__) << '/'
+
+        config.vm.box = 'archlinux_x86_64'
+        config.vm.box_url = 'http://cloud.terry.im/vagrant/archlinux-x86_64.box'
         config.vm.provision "shell" do |s|
                 s.path  = HEADLESS_SCRIPT_DIR + 'deps/archlinux_deps.sh'
         end
