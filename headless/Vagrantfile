@@ -7,6 +7,9 @@ if !Vagrant.has_plugin?("vagrant-tun")
   abort "Installed the vagrant-tun plugin.\nFor the next configuration step, please again run: \"vagrant up\""
 end
 
+# remove external virtualbox-guest-dkms in Archlinux boxes before running vagrant-vbguest
+require_relative 'inline/remove-guest-dkms.rb'
+
 Vagrant.configure('2') do |config|
         config.tun.enabled = true
         config.ssh.forward_agent = true
