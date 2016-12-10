@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 # if vagrant-tun is not installed, install it and abort
-if !Vagrant.has_plugin?("vagrant-tun")
+if !Vagrant.has_plugin?("vagrant-tun") && !ARGV.include?("plugin")
   system("vagrant plugin install vagrant-tun")
   abort "Installed the vagrant-tun plugin.\nFor the next configuration step, please again run: \"vagrant up\""
 end
